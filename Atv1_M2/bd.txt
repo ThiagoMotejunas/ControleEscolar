@@ -1,0 +1,92 @@
+CREATE SCHEMA escola_bd;
+USE escola_bd;
+
+CREATE TABLE alunos (
+    pk_id INTEGER PRIMARY KEY AUTO_INCREMENT, 
+    nome VARCHAR(40) NOT NULL,
+    idade INTEGER NOT NULL,
+    cpf VARCHAR(11) NOT NULL,    
+    email VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE professor (
+    pk_id INTEGER PRIMARY KEY AUTO_INCREMENT, 
+    nome_professor VARCHAR(50) NOT NULL, 
+    cpf_professor VARCHAR(11) NOT NULL,
+    periodo VARCHAR(15) NOT NULL
+);
+
+CREATE TABLE materia (
+    pk_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    nome_materia VARCHAR(25) NOT NULL,
+    tempo_aula INTEGER NOT NULL
+);
+
+CREATE TABLE nota (
+    pk_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    nota FLOAT NOT NULL,
+    id_aluno INTEGER,
+    id_professor INTEGER,
+    id_materia INTEGER,
+    FOREIGN KEY (id_aluno) REFERENCES alunos(pk_id),
+    FOREIGN KEY (id_professor) REFERENCES professor(pk_id),
+    FOREIGN KEY (id_materia) REFERENCES materia(pk_id)
+);
+
+INSERT INTO alunos (nome, idade, cpf, email) VALUES 
+('Ana Souza', 20, '12345678901', 'ana.souza@email.com'),
+('Carlos Lima', 22, '23456789012', 'carlos.lima@email.com'),
+('Beatriz Rocha', 19, '34567890123', 'beatriz.rocha@email.com'),
+('Eduardo Silva', 21, '45678901234', 'eduardo.silva@email.com'),
+('Fernanda Alves', 23, '56789012345', 'fernanda.alves@email.com'),
+('Gabriel Costa', 20, '67890123456', 'gabriel.costa@email.com'),
+('Helena Martins', 22, '78901234567', 'helena.martins@email.com'),
+('Igor Ribeiro', 24, '89012345678', 'igor.ribeiro@email.com'),
+('Juliana Dias', 21, '90123456789', 'juliana.dias@email.com'),
+('Lucas Ferreira', 23, '01234567890', 'lucas.ferreira@email.com');
+
+INSERT INTO professor (nome_professor, cpf_professor, periodo) VALUES 
+('Marcos Vinicius', '12312312300', 'Manhã'),
+('Patrícia Almeida', '23423423411', 'Tarde'),
+('Rodrigo Torres', '34534534522', 'Noite'),
+('Larissa Prado', '45645645633', 'Manhã'),
+('Bruno Neves', '56756756744', 'Tarde'),
+('Tatiane Lima', '67867867855', 'Noite'),
+('Diego Barbosa', '78978978966', 'Manhã'),
+('Renata Souza', '89089089077', 'Tarde'),
+('Fábio Cunha', '90190190188', 'Noite'),
+('Vanessa Rocha', '01201201299', 'Manhã');
+
+INSERT INTO materia (nome_materia, tempo_aula) VALUES 
+('Matemática', 60),
+('História', 50),
+('Física', 60),
+('Química', 55),
+('Geografia', 50),
+('Português', 45),
+('Biologia', 60),
+('Inglês', 40),
+('Artes', 35),
+('Educação Física', 30);
+
+INSERT INTO nota (nota, id_aluno, id_professor, id_materia) VALUES
+(9.0, 1, 1, 1), (8.5, 2, 2, 1), (8.0, 3, 3, 1), (8.3, 4, 4, 1), (7.9, 5, 5, 1),
+(8.6, 6, 6, 1), (7.8, 7, 7, 1), (8.4, 8, 8, 1), (8.1, 9, 9, 1), (8.2, 10, 10, 1),
+(6.0, 1, 2, 2), (5.0, 2, 3, 2), (5.5, 3, 4, 2), (4.8, 4, 5, 2), (5.2, 5, 6, 2),
+(5.7, 6, 7, 2), (4.9, 7, 8, 2), (5.3, 8, 9, 2), (5.8, 9, 10, 2), (5.1, 10, 1, 2),
+(6.5, 1, 3, 3), (7.2, 2, 4, 3), (6.8, 3, 5, 3), (7.0, 4, 6, 3), (6.7, 5, 7, 3),
+(7.3, 6, 8, 3), (6.9, 7, 9, 3), (6.4, 8, 10, 3), (7.1, 9, 1, 3), (6.6, 10, 2, 3),
+(4.5, 1, 4, 4), (5.0, 2, 5, 4), (4.8, 3, 6, 4), (5.1, 4, 7, 4), (4.6, 5, 8, 4),
+(4.7, 6, 9, 4), (5.2, 7, 10, 4), (4.9, 8, 1, 4), (4.3, 9, 2, 4), (5.0, 10, 3, 4),
+(7.0, 1, 5, 5), (7.3, 2, 6, 5), (6.8, 3, 7, 5), (7.1, 4, 8, 5), (7.5, 5, 9, 5),
+(7.2, 6, 10, 5), (6.9, 7, 1, 5), (7.4, 8, 2, 5), (7.0, 9, 3, 5), (7.1, 10, 4, 5),
+(5.5, 1, 6, 6), (5.8, 2, 7, 6), (5.2, 3, 8, 6), (6.1, 4, 9, 6), (5.4, 5, 10, 6),
+(5.9, 6, 1, 6), (6.0, 7, 2, 6), (5.1, 8, 3, 6), (5.6, 9, 4, 6), (5.7, 10, 5, 6),
+(8.5, 1, 7, 7), (9.0, 2, 8, 7), (8.7, 3, 9, 7), (8.4, 4, 10, 7), (8.2, 5, 1, 7),
+(8.9, 6, 2, 7), (8.1, 7, 3, 7), (8.6, 8, 4, 7), (9.2, 9, 5, 7), (8.3, 10, 6, 7),
+(5.0, 1, 8, 8), (5.3, 2, 9, 8), (4.9, 3, 10, 8), (5.4, 4, 1, 8), (5.2, 5, 2, 8),
+(5.6, 6, 3, 8), (4.7, 7, 4, 8), (5.5, 8, 5, 8), (5.1, 9, 6, 8), (4.8, 10, 7, 8),
+(6.4, 1, 9, 9), (6.7, 2, 10, 9), (6.2, 3, 1, 9), (6.8, 4, 2, 9), (6.5, 5, 3, 9),
+(6.9, 6, 4, 9), (6.3, 7, 5, 9), (6.1, 8, 6, 9), (6.6, 9, 7, 9), (6.0, 10, 8, 9),
+(4.5, 1, 10, 10), (4.9, 2, 1, 10), (4.8, 3, 2, 10), (5.0, 4, 3, 10), (4.7, 5, 4, 10),
+(4.6, 6, 5, 10), (5.1, 7, 6, 10), (4.4, 8, 7, 10), (4.3, 9, 8, 10), (5.2, 10, 9, 10);
