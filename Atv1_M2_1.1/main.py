@@ -70,7 +70,6 @@ def frmMain():
 
     janelaMain = customtkinter.CTk()
     janelaMain.title("Thejunas school")
-    janelaMain.iconbitmap("logo.ico")
     janelaMain.geometry("700x600")
     janelaMain.resizable(False, False)
     
